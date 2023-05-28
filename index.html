@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADE-SHORTENED-URL-Racourcisser vos lien</title>
+    <link href="main.css" rel="stylesheet">
+    <link href="ICO.png" rel="icon">
+</head>
+<body>
+<header>
+    <h3>ADE<span>SHORTENED</span>URL</h3>
+</header>
+
+
+<h2>BIENVENUE SUR NOTRE PLATEFORME QUI VOUS PERMET DE RACOURCISSER VOS LIEN !</h2>
+
+<div class="cont">
+
+        <label for="link">Entrez le lien</label>
+        <input type="link" name="link" id="link" placeholder="Exemple:https//exemple.com" required>
+        <input type="submit" value="Envoyer" id="btt">
+        <div class="res"></div>
+
+</div><br><br>
+
+ <div id="code"><span>created by <code>Adelin-Hounhoui</code></span></div>
+<script>
+    btt=document.querySelector("#btt")
+     btt.onclick=  async function short(){
+        const url = document.querySelector("#link").value;
+        const response= await fetch(`https://tinyurl.com/api-create.php?url=${encodeURIComponent(url)}`);
+        if(response.ok){
+            const data=await response.text();
+            document.querySelector(".res").innerHTML=`Copie Url : <a href="${data}" target="_blank">${data}</a>
+            `;
+
+        }else{
+            document.querySelector(".res").innerHTML="Url non valid.."
+        }
+    }
+</script>
+    
+</body>
+</html>
